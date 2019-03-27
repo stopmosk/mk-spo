@@ -16,7 +16,7 @@ mk_list = [['МК Сиьска', 4],  # Название и вместимост
 sorted_list = sort_mk_list(db, mk_list)   # Отсортировали МК по популярности
 
 print('***************** РАСПРЕДЕЛЕНИЕ ПО МК ***************************')
-mk_result = assign_people_v2(db, sorted_list, pr)
+mk_result, satisfaction = assign_people_v2(db, sorted_list, pr)
 for mk in mk_result:
     print(mk[0])
     for name in mk[2]:
@@ -26,3 +26,6 @@ print('*************** ЛЮДИ, ОСТАВШИЕСЯ НЕРАСПРЕДЕЛЁН
 for name in db:
     if db[name].count(' ') == 0:
         print(name)
+
+print('Процент удовлетворённости распределением: ' +
+      str(int(satisfaction * 100)) + '%')
