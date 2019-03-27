@@ -23,7 +23,7 @@ def assign_people_v2(db, mk_list, max_priority):
     return result, names, satisf / len(db) / max_priority
 
 
-def sort_mk_list(db, mk_list):
+def sort_mk_list(db, mk_list, pr):
     # Функция сортировочки списка МК по популярности
     # Можно менять направление сортировки и смотреть как это влияет на рез-т
     result = []
@@ -33,7 +33,7 @@ def sort_mk_list(db, mk_list):
             for p, sel in enumerate(db[name]):
                 if sel == mk[0]:
                     cnt += 1
-        result.append([mk[0], mk[1], cnt / mk[1]])
+        result.append([mk[0], mk[1], cnt / pr / mk[1]])
     # result.sort(key=lambda res: res[2])
     result.sort(key=lambda res: res[2], reverse=True)
     return result
