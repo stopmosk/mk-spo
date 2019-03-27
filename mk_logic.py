@@ -14,19 +14,18 @@ def assign_people_v2(db, mk_list, max_priority):
                 if db[name][priority] == mk[0]:
                     if name not in names:
                         continue
-                    s_pers = int((1 - priority/max_priority) * 100)
-                    result[i][2].append(name + ', ' + str(s_pers))
+                    result[i][2].append(name)
                     satisf += max_priority - priority   # Удовлетворённость
                     names.remove(name)
                     result[i][1] -= 1   # Уменьшить кол-во свободных мест
                 if result[i][1] == 0:
                     break
-
-    print(result)
     return result, names, satisf / len(db) / max_priority
 
 
 def sort_mk_list(db, mk_list):
+    # Функция сортировочки списка МК по популярности
+    # Можно менять направление сортировки и смотреть как это влияет на рез-т
     result = []
     for mk in mk_list:
         cnt = 0
