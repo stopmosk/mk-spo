@@ -2,6 +2,7 @@ def assign_people(db, mk_list, max_priority):
     # Функция распределения людей по МК
     # Внешний цикл - МК, внутренний - приоритет.
     result = []
+    satisf = 0   # Удовлетворённость распределением
     for mk in mk_list:
         stu_list = []   # Список людей, которых запишут на данный МК
         free_slots = mk[1]
@@ -9,6 +10,7 @@ def assign_people(db, mk_list, max_priority):
             for name in db:
                 if db[name][priority] == mk[0]:
                     stu_list.append(name)
+                    satisf += max_priority - priority   # Удовлетворённость
                     db[name] = list(' ' * max_priority)
                     # Я негодяй и меняю аргументы функции. Знаю, плохо
                     free_slots -= 1
@@ -20,7 +22,7 @@ def assign_people(db, mk_list, max_priority):
         for f_slot in range(free_slots, 0, -1):
             stu_list.append('---')
         result.append([mk[0], free_slots, stu_list])
-    return result
+    return result, satisf / len(db) / max_priority
 
 
 def assign_people_v2(db, mk_list, max_priority):
