@@ -15,9 +15,9 @@ def assign_people_v2(db, mk_list, max_priority):
                     if name not in names:
                         continue
                     result[i][2].append(name)
-                    satisf += max_priority - priority   # Удовлетворённость
-                    names.remove(name)
-                    result[i][1] -= 1   # Уменьшить кол-во свободных мест
+                    satisf += max_priority - priority
+                    names.remove(name)  # Убираем распределённого
+                    result[i][1] -= 1   # и уменьшаем кол-во свободных мест
                 if result[i][1] == 0:
                     break
     return result, names, satisf / len(db) / max_priority
