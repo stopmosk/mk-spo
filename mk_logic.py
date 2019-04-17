@@ -1,3 +1,7 @@
+import random
+from collections import OrderedDict
+
+
 def assign_people_v2(db, mk_list, max_priority):
     # Функция распределения людей по МК
     # Внешний цикл - приоритет, внутренний - МК
@@ -37,6 +41,12 @@ def sort_mk_list(db, mk_list, pr):
     # result.sort(key=lambda res: res[2])
     result.sort(key=lambda res: res[2], reverse=True)
     return result
+
+
+def shuffle_dict(d):
+    keys = list(d.keys())
+    random.shuffle(keys)
+    return OrderedDict([(k, d[k]) for k in keys])
 
 
 def assign_people(db, mk_list, max_priority):
